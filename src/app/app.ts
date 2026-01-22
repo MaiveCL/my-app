@@ -1,10 +1,10 @@
 import {Component} from '@angular/core';
-import {Home} from './home/home';
+//import {Home} from './home/home'; // demandé par le tuto, warning comme inutilisé dans la console
 import {RouterLink, RouterOutlet} from '@angular/router';
 
 @Component({
   selector: 'app-root',
-  imports: [Home, RouterOutlet, RouterLink],
+  imports: [/*Home,*/ RouterOutlet, RouterLink], // demandé par le tuto, warning comme inutilisé dans la console
   template:
     `
     <main>
