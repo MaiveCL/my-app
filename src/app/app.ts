@@ -16,7 +16,7 @@ import { MatButtonModule } from '@angular/material/button';
         </a>
 
         <button matButton="elevated" class="primary" type="button" (click)="goToLogin()">
-          Se connecter
+          Se&nbsp;connecter
         </button>
       </header>
 

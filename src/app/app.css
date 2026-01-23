@@ -6,6 +6,7 @@ header {
   height: 60px;
   padding: var(--content-padding);
   box-shadow: 0px 5px 25px var(--shadow-color);
+  margin-bottom: 10px;
 }
 .content {
   padding: var(--content-padding);
@@ -14,4 +15,8 @@ header {
   display: flex;           /* logo et bouton sur la même ligne */
   align-items: center;     /* aligne verticalement */
   justify-content: space-between; /* logo à gauche, bouton à droite */
+  flex-wrap: wrap;
+}
+button {
+  min-width: fit-content;
 }
