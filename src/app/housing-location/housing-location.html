@@ -1,14 +1,22 @@
-<section class="listing">
-    <img
-    class="listing-photo"
-    [src]="housingLocation().photo" 
+<mat-card class="listing-card" appearance="outlined">
+  <img
+    mat-card-image
+    [src]="housingLocation().photo"
     alt="Exterior photo of {{ housingLocation().name }}"
     crossorigin
-    />
-    <h2 class="listing-heading">{{ housingLocation().name }}</h2>
-    <p class="listing-location">{{ housingLocation().city }}, {{ housingLocation().state }}</p>
-    <a [routerLink]="['/details', housingLocation().id]">Learn More</a>
-</section>
+  />
+
+  <mat-card-content>
+    <h2>{{ housingLocation().name }}</h2>
+    <p>{{ housingLocation().city }}, {{ housingLocation().state }}</p>
+  </mat-card-content>
+
+  <mat-card-actions>
+    <a mat-button [routerLink]="['/details', housingLocation().id]">
+      Learn More
+    </a>
+  </mat-card-actions>
+</mat-card>
 
 
 <!-- <section class="listing">

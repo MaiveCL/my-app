@@ -30,8 +30,8 @@ import { MatButtonModule } from '@angular/material/button';
 export class App {
   title = 'homes';
 
-  goToLogin() {
-  window.location.href = '/login';
+  goToLogin() { ///////////////////////////////////////////////////////////////////////////
+  window.location.href = '/login'; /// fait un refresh, c'est non, voir la mécanique du logo home
 }
 }
 

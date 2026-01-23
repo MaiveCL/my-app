@@ -64,7 +64,7 @@ export class Home {
     } else {
       this.router.navigate([], {
         relativeTo: this.route,
-        queryParams: { city: text }
+        queryParams: { city: text } ///////////////////////////////////////////////////////// soit la valeur soit null pour pas qui soit la
       });
     }
   }
@@ -72,7 +72,7 @@ export class Home {
   reset() {
     this.router.navigate([], {
       relativeTo: this.route,
-      queryParams: {}
+      queryParams: {} /////////////////////////// recherche a vide pour réinitiliser (utilise la mécanique de navigate)
     });
   }
 
