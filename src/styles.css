@@ -2,9 +2,10 @@
 * {
   margin: 0;
   padding: 0;
+  line-height: 1;
 }
 
-body {
+/* body {
   font-family: 'Be Vietnam Pro', sans-serif;
 }
 :root {
@@ -20,4 +21,4 @@ button.primary {
   background: var(--primary-color);
   color: white;
   border-radius: 8px;
-}
+} */

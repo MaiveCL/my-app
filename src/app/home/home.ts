@@ -1,19 +1,43 @@
 import {HousingLocation} from '../housing-location/housing-location';
 import { HousingLocationInfo } from '../housinglocation';
-import {Component, inject} from '@angular/core';
+import {ChangeDetectorRef, Component, inject} from '@angular/core';
 import {HousingService} from '../housingService';
+import { MatButtonModule } from '@angular/material/button';
+import {MatInputModule} from '@angular/material/input';
+import {MatFormFieldModule} from '@angular/material/form-field';
+
+
+// j'envoie avec les crochet, je recoi avec parntheses
+
+// enter emballer notre inputt dans un form
 
 @Component({
   selector: 'app-home',
-  imports: [HousingLocation],
+  imports: [MatButtonModule, HousingLocation, MatInputModule, MatFormFieldModule],
   templateUrl: './home.html',
   styleUrl: './home.css',
 })
 export class Home {
-
+  private readonly changeDetectorRef = inject(ChangeDetectorRef);
+  
   housingService: HousingService = inject(HousingService);
+
+  filteredLocationList: HousingLocationInfo[] = [];
+
+
   constructor() {
     this.housingLocationList = this.housingService.getAllHousingLocations();
+    this.filteredLocationList = this.housingLocationList;
+  }
+
+  filterResults(text: string) {
+    if (!text) {
+      this.filteredLocationList = this.housingLocationList;
+      return;
+    }
+    this.filteredLocationList = this.housingLocationList.filter((housingLocation) =>
+      housingLocation?.city.toLowerCase().includes(text.toLowerCase()),
+    );
   }
 
   //readonly baseUrl = 'https://angular.dev/assets/images/tutorials/common';

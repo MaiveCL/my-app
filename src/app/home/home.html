@@ -1,13 +1,17 @@
 <section>
-    <form>
-    <input type="text" placeholder="Filter by city" />
-    <button class="primary" type="button">Search</button>
+    <form class="form">
+        <mat-form-field class="full-width">
+            <mat-label>Filter by city</mat-label>
+            <input matInput type="text" placeholder="Filter by city" #filter />
+        </mat-form-field>
+        <button matButton="elevated" class="primary" type="button" (click)="filterResults(filter.value)">Search</button>
     </form>
 </section>
 <section class="results">
     <!-- <app-housing-location /> -->
     <!-- <app-housing-location [housingLocation]="housingLocation" /> -->
-    @for (housingLocation of housingLocationList; track $index) {
+    @for (housingLocation of filteredLocationList; track $index) {
         <app-housing-location [housingLocation]="housingLocation" />
     }
 </section>
+
