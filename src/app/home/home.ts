@@ -5,7 +5,7 @@ import {HousingService} from '../housingService';
 import { MatButtonModule } from '@angular/material/button';
 import {MatInputModule} from '@angular/material/input';
 import {MatFormFieldModule} from '@angular/material/form-field';
-
+import { ActivatedRoute, Router } from '@angular/router';
 
 // j'envoie avec les crochet, je recoi avec parntheses
 
@@ -18,6 +18,11 @@ import {MatFormFieldModule} from '@angular/material/form-field';
   styleUrl: './home.css',
 })
 export class Home {
+  currentFilter = '';
+
+  private readonly router = inject(Router);
+  private readonly route = inject(ActivatedRoute);
+
   private readonly changeDetectorRef = inject(ChangeDetectorRef);
   
   housingService: HousingService = inject(HousingService);
@@ -28,6 +33,15 @@ export class Home {
   constructor() {
     this.housingLocationList = this.housingService.getAllHousingLocations();
     this.filteredLocationList = this.housingLocationList;
+
+    this.filterResults(this.currentFilter);
+
+        // Lire le query param au chargement
+    this.route.queryParams.subscribe(params => {
+      const city = params['city'] || '';
+      this.currentFilter = city;
+      this.filterResults(city);
+    });
   }
 
   filterResults(text: string) {
@@ -38,6 +52,28 @@ export class Home {
     this.filteredLocationList = this.housingLocationList.filter((housingLocation) =>
       housingLocation?.city.toLowerCase().includes(text.toLowerCase()),
     );
+  }
+
+  search(text: string) {
+    if (text === '') {
+      // ne pas injecter de param si vide
+      this.router.navigate([], {
+        relativeTo: this.route,
+        queryParams: {}
+      });
+    } else {
+      this.router.navigate([], {
+        relativeTo: this.route,
+        queryParams: { city: text }
+      });
+    }
+  }
+
+  reset() {
+    this.router.navigate([], {
+      relativeTo: this.route,
+      queryParams: {}
+    });
   }
 
   //readonly baseUrl = 'https://angular.dev/assets/images/tutorials/common';
