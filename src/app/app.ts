@@ -1,18 +1,25 @@
 import {Component} from '@angular/core';
 //import {Home} from './home/home'; // demandé par le tuto, warning comme inutilisé dans la console
 import {RouterLink, RouterOutlet} from '@angular/router';
+import { MatButtonModule } from '@angular/material/button';
+
 
 @Component({
   selector: 'app-root',
-  imports: [/*Home,*/ RouterOutlet, RouterLink], // demandé par le tuto, warning comme inutilisé dans la console
+  imports: [/*Home,*/ RouterOutlet, RouterLink, MatButtonModule], // demandé par le tuto, warning comme inutilisé dans la console
   template:
     `
     <main>
-      <a [routerLink]="['/']">
-        <header class="brand-name">
+      <header class="brand-name">
+        <a [routerLink]="['/']">
           <img class="brand-logo" src="logo.svg" alt="logo" aria-hidden="true" />
-        </header>
-      </a>
+        </a>
+
+        <button matButton="elevated" class="primary" type="button" (click)="goToLogin()">
+          Se connecter
+        </button>
+      </header>
+
       <section class="content">
         <router-outlet />
       </section>
@@ -22,6 +29,10 @@ import {RouterLink, RouterOutlet} from '@angular/router';
 })
 export class App {
   title = 'homes';
+
+  goToLogin() {
+  window.location.href = '/login';
+}
 }
 
 // import { Component, signal } from '@angular/core';

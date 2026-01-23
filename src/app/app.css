@@ -10,3 +10,8 @@ header {
 .content {
   padding: var(--content-padding);
 }
+.brand-name {
+  display: flex;           /* logo et bouton sur la même ligne */
+  align-items: center;     /* aligne verticalement */
+  justify-content: space-between; /* logo à gauche, bouton à droite */
+}
