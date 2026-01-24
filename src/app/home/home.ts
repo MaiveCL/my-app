@@ -6,6 +6,7 @@ import { MatButtonModule } from '@angular/material/button';
 import {MatInputModule} from '@angular/material/input';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import { ActivatedRoute, Router } from '@angular/router';
+import { FormsModule } from '@angular/forms';
 
 // j'envoie avec les crochet, je recoi avec parntheses
 
@@ -13,7 +14,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-home',
-  imports: [MatButtonModule, HousingLocation, MatInputModule, MatFormFieldModule],
+  imports: [FormsModule, MatButtonModule, HousingLocation, MatInputModule, MatFormFieldModule],
   templateUrl: './home.html',
   styleUrl: './home.css',
 })

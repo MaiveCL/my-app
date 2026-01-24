@@ -1,5 +1,5 @@
 <section>
-  <form class="form" (submit)="$event.preventDefault()">
+  <form class="form" (ngSubmit)="search(filter.value)">
     <mat-form-field class="full-width">
       <mat-label>Filter by city</mat-label>
       <input
@@ -14,8 +14,7 @@
     <button
       matButton="elevated"
       class="primary"
-      type="button"
-      (click)="search(filter.value)">
+      type="submit">
       Search
     </button>
 
