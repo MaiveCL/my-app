@@ -1,40 +1,68 @@
-<!-- <p>housingLocationId : {{ housingLocationId }}</p> -->
-
 <article>
-    <img
-    class="listing-photo"
-    [src]="housingLocation?.photo"
-    alt="Exterior photo of {{ housingLocation?.name }}"
-    crossorigin
-    />
 
-    <section class="listing-description">
-    <h2 class="listing-heading">{{ housingLocation?.name }}</h2>
-    <p class="listing-location">{{ housingLocation?.city }}, {{ housingLocation?.state }}</p>
-    </section>
-    <section class="listing-features">
-    <h2 class="section-heading">About this housing location</h2>
-    <ul>
-        <li>Units available: {{ housingLocation?.availableUnits }}</li>
-        <li>Does this location have wifi: {{ housingLocation?.wifi }}</li>
-        <li>Does this location have laundry: {{ housingLocation?.laundry }}</li>
-    </ul>
-    </section>
+    <!-- 
+    <h2 class="mat-headline">Tests angular material typo</h2>
+    <h2 class="mat-headline" style="color: var(--mat-sys-primary)">Titre en primary</h2>
+    <p class="mat-body-medium">Paragraphe normal</p>
+    <h1>Tests angular material typo</h1>
+    <h2>Tests angular material typo</h2>
+    <h3>Tests angular material typo</h3>
+    <h4>Tests angular material typo</h4>
+    <h5>Tests angular material typo</h5>
+    <h6>Tests angular material typo</h6> 
+    -->
 
-    <section class="listing-apply">
+      <section>
+        <mat-card class="listing-card" appearance="outlined">
+          <img
+          class="listing-card img"
+          [src]="housingLocation?.photo"
+          alt="Exterior photo of {{ housingLocation?.name }}"
+          crossorigin
+          />
+        </mat-card>
+      </section>
+
+
+    <section>
+      <section class="listing-description">
+        <h1>{{ housingLocation?.name }}</h1>
+        <p class="listing-location">{{ housingLocation?.city }}, {{ housingLocation?.state }}</p>
+      </section>
+
+      <section class="listing-features">
+        <h2>About this housing location</h2>
+        <ul>
+            <li>Units available: {{ housingLocation?.availableUnits }}</li>
+            <li>Does this location have wifi: {{ housingLocation?.wifi }}</li>
+            <li>Does this location have laundry: {{ housingLocation?.laundry }}</li>
+        </ul>
+      </section>
+
+      <section class="listing-apply">
         <h2 class="section-heading">Apply now to live here</h2>
-        <form [formGroup]="applyForm" (submit)="submitApplication()">
-          <label for="first-name">First Name</label>
-          <input id="first-name" type="text" formControlName="firstName" />
-          
-          <label for="last-name">Last Name</label>
-          <input id="last-name" type="text" formControlName="lastName" />
-          
-          <label for="email">Email</label>
-          <input id="email" type="email" formControlName="email" />
-          <button type="submit" class="primary">Apply now</button>
+        <form [formGroup]="applyForm" (ngSubmit)="submitApplication()">
+
+          <mat-form-field class="full-width">
+            <mat-label>First Name</mat-label>
+            <input matInput formControlName="firstName" />
+          </mat-form-field>
+
+          <mat-form-field class="full-width">
+            <mat-label>Last Name</mat-label>
+            <input matInput formControlName="lastName" />
+          </mat-form-field>
+
+          <mat-form-field class="full-width">
+            <mat-label>Email</mat-label>
+            <input matInput type="email" formControlName="email" />
+          </mat-form-field>
+
+          <button matButton="elevated" class="primary" type="submit">
+            Apply now
+          </button>
+
         </form>
       </section>
+    </section>
 </article>
-
-<!-- https://angular.dev/tutorials/first-app/12-forms -->

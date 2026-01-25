@@ -1,15 +1,31 @@
-.listing-photo {
-  height: 600px;
-  width: 50%;
+article {
+  display: flex;
+  gap: 8px;
+  flex-direction: row;
+}
+
+article > section {
+  max-width: 100%;
+  min-width: 50px; /* remplace la valeur "auto" 
+  pour s'assurer que tout block de contenu a une valeur minimale réelle
+  Sinon la largeur de l'image peut écraser le formulaire à coté */
+}
+
+.full-width {
+  display: flex;
+  gap: 8px;
+  flex-direction: column;
+}
+
+.listing-card {
+  overflow: hidden;
+}
+
+.listing-card img {
+  flex: 1;
   object-fit: cover;
-  border-radius: 30px;
-  float: right;
 }
-.listing-heading {
-  font-size: 48pt;
-  font-weight: bold;
-  margin-bottom: 15px;
-}
+
 .listing-location::before {
   content: url('/public/location-pin.svg') / '';
 }
@@ -18,7 +34,6 @@
   margin-bottom: 15px;
 }
 .listing-features > .section-heading {
-  color: var(--secondary-color);
   font-size: 24pt;
   margin-bottom: 15px;
 }
@@ -35,29 +50,19 @@ li {
   font-size: 18pt;
   margin-bottom: 15px;
 }
-label,
-input {
-  display: block;
+
+@media (min-width: 801px) {
+  .listing-card  {
+    flex: 1 1 0;
+    overflow: hidden;
+  }
+  article > section {
+    flex: 1 1 450px;
+  }
 }
-label {
-  color: var(--secondary-color);
-  font-weight: bold;
-  text-transform: uppercase;
-  font-size: 12pt;
-}
-input {
-  font-size: 16pt;
-  margin-bottom: 15px;
-  padding: 10px;
-  width: 400px;
-  border-top: none;
-  border-right: none;
-  border-left: none;
-  border-bottom: solid 0.3px;
-}
-@media (max-width: 1024px) {
-  .listing-photo {
-    width: 100%;
-    height: 400px;
+
+@media (max-width: 800px) {
+  article {
+    flex-direction: column;
   }
 }

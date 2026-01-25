@@ -31,8 +31,26 @@
   <p>{{ filteredLocationList.length }} résultat(s)</p>
 </section>
 
+<!-- 
+  <app-housing-location
+    [housingLocation]="housingLocation"
+    (detailsClick)="handleLocationClicked($event)">
+  </app-housing-location> 
+-->
+
+<!-- 
+  <HousingLocation 
+    [HousingLocationInfo]="HousingLocationInfo"
+    (detailsClick)="handleLocationClicked($event)">
+  </HousingLocation> 
+-->
+
+
 <section class="results">
   @for (housingLocation of filteredLocationList; track $index) {
-    <app-housing-location [housingLocation]="housingLocation" />
+    <app-housing-location
+      [housingLocation]="housingLocation"
+      (detailsClick)="handleLocationClicked($event)">
+    </app-housing-location>
   }
 </section>

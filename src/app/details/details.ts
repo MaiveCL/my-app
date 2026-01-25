@@ -3,17 +3,20 @@ import {ActivatedRoute} from '@angular/router';
 import {HousingService} from '../housingService';
 import {HousingLocationInfo} from '../housinglocation';
 import {FormControl, FormGroup, ReactiveFormsModule} from '@angular/forms'
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatButtonModule } from '@angular/material/button';
+import {MatCardModule} from '@angular/material/card';
 
 @Component({
   selector: 'app-details',
-  imports: [ReactiveFormsModule],
+  imports: [ReactiveFormsModule, MatCardModule, MatFormFieldModule, MatInputModule, MatButtonModule],
   templateUrl: './details.html',
   styleUrl: './details.css',
 })
 export class Details {
   route: ActivatedRoute = inject(ActivatedRoute);
   housingService = inject(HousingService);
-  housingLocationId = -1; // n'est plus nécessaire
   housingLocation: HousingLocationInfo | undefined;
 
   applyForm = new FormGroup({
@@ -23,8 +26,6 @@ export class Details {
   });
 
   constructor() {
-    // POUR NE PAS AVOIR LE ID A -1 DAns l'affichage test
-    // this.housingLocationId = Number(this.route.snapshot.params['id']);
     const housingLocationId = Number(this.route.snapshot.params['id']);
     this.housingLocation = this.housingService.getHousingLocationById(housingLocationId);
   }

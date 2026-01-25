@@ -1,23 +1,62 @@
 <section class="auth-section">
   <h2>Créer un compte</h2>
-  <form [formGroup]="registerForm">
+  <form [formGroup]="registerForm" (submit)="handleSubmit()">
+
     <mat-form-field appearance="fill" class="full-width">
+
       <mat-label>Nom d'utilisateur</mat-label>
-      <input matInput formControlName="username" />
+      <input formControlName="username" matInput>
+
+      @if(usernameControl.hasError('required')) {
+          <mat-error>Please enter a username</mat-error>
+      }
+      @else if(usernameControl.hasError('email')) {
+          <mat-error>Username must be an email</mat-error>
+      }
+
     </mat-form-field>
 
     <mat-form-field appearance="fill" class="full-width">
+
       <mat-label>Mot de passe</mat-label>
-      <input matInput type="password" formControlName="password" />
+      <input formControlName="password" matInput type="password">
+      <mat-error>Please enter a password</mat-error>
+
     </mat-form-field>
 
     <mat-form-field appearance="fill" class="full-width">
+
       <mat-label>Confirmer le mot de passe</mat-label>
-      <input matInput type="password" formControlName="confirmPassword" />
+      <input formControlName="passwordConfirmation" [errorStateMatcher]="confirmationMatcher" matInput type="password">
+
+            @if(passwordConfirmationControl.hasError('required')) {
+                <mat-error>Please enter a password confirmation</mat-error>
+            }
+            @else if(registerForm.hasError('passwordConfirmationMustMatch')) {
+                <mat-error>Password confirmation must match password</mat-error>
+            }
+
     </mat-form-field>
 
-    <button matButton color="primary" type="submit">Créer un compte</button>
+    <div id="buttons">
+
+      <button matButton color="primary" type="submit">Créer un compte</button>
+      <p>Déjà inscrit ? <a [routerLink]="['/login']">Se connecter</a></p>
+
+    </div>
+
   </form>
 
-  <p>Déjà inscrit ? <a [routerLink]="['/login']">Se connecter</a></p>
+  <pre>
+    {{
+      {
+          username: registerForm.get('username')?.errors,
+          password: registerForm.get('password')?.errors,
+          passwordConfirmation: registerForm.get('passwordConfirmation')?.errors,
+          registerForm: registerForm.errors,
+          registerFormValid: registerForm.valid
+      } | json
+    }}
+  </pre>
+
 </section>

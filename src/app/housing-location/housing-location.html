@@ -1,4 +1,5 @@
 <mat-card class="listing-card" appearance="outlined">
+  
   <img
     mat-card-image
     [src]="housingLocation().photo"
@@ -12,21 +13,10 @@
   </mat-card-content>
 
   <mat-card-actions>
-    <a mat-button [routerLink]="['/details', housingLocation().id]">
+    <button mat-button (click)="handleClick()">Learn More</button>
+    <!-- <a mat-button [routerLink]="['/details', housingLocation().id]">
       Learn More
-    </a>
+    </a> -->
   </mat-card-actions>
-</mat-card>
 
-<!-- <section class="listing">
-    <img
-    class="listing-photo"
-    [src]="housingLocation().photo" 
-        ?????????? POURQUOI LE TUTO RETIRE LES PARENTHÈSES ICI QUAND ON AJOUTE LA PAGE DÉTAILS, ÇA DONNE UNE ERREUR !!!
-        https://angular.dev/tutorials/first-app/11-details-page
-    alt="Exterior photo of {{ housingLocation().name }}"
-    crossorigin
-    />
-    <h2 class="listing-heading">{{ housingLocation().name }}</h2>
-    <p class="listing-location">{{ housingLocation().city }}, {{ housingLocation().state }}</p>
-</section> -->
+</mat-card>
