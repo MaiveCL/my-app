@@ -1,5 +1,7 @@
+// import {RouterLink} from '@angular/router';
+// déplacement de la logique de navigation dans le home
+
 import {Component, input, output} from '@angular/core';
-import {RouterLink} from '@angular/router';
 import {MatCardModule} from '@angular/material/card';
 import {MatButtonModule} from '@angular/material/button';
 
