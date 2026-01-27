@@ -1,6 +1,6 @@
 import { RouterLink } from '@angular/router';
 
-import {Component, inject} from '@angular/core';
+import {Component, inject, signal} from '@angular/core';
 import {JsonPipe} from '@angular/common';
 import {RouterModule, Router} from '@angular/router';
 import {FormControl, FormGroup, FormGroupDirective, NgForm, AbstractControl, ReactiveFormsModule, Validators, ValidationErrors} from '@angular/forms';
@@ -11,14 +11,20 @@ import {MatInputModule} from '@angular/material/input';
 import {MatButtonModule} from '@angular/material/button';
 import {ErrorStateMatcher} from '@angular/material/core';
 
+import {AuthService} from '../../../services/authService';
+import {UserCredentials} from '../../../models/userCredentials';
+
 @Component({
   selector: 'app-register',
-  imports: [JsonPipe, RouterModule, RouterLink, MatFormFieldModule, MatInputModule, MatButtonModule, ReactiveFormsModule],
+  imports: [JsonPipe, RouterModule, RouterLink, MatIconModule, MatFormFieldModule, MatInputModule, MatButtonModule, ReactiveFormsModule],
   templateUrl: './register.html',
   styleUrl: '../auth.css',
 })
 export class Register {
   private readonly router = inject(Router)
+  private readonly auth = inject(AuthService)
+
+  error = signal<string | null>(null)
 
   passwordControl = new FormControl('', [Validators.required])
   passwordConfirmationControl = new FormControl('', [Validators.required])
@@ -38,7 +44,6 @@ export class Register {
         } else {
             return null
         }
-
     }
 
     get usernameControl(): FormControl {
@@ -48,7 +53,18 @@ export class Register {
     handleSubmit() {
 
         if (this.registerForm.valid) {
-            this.router.navigate(['/'])
+            console.log(this.registerForm.value)
+            const { username, password } = this.registerForm.value
+            const credentials = new UserCredentials({ username: username!, password: password! })
+
+            this.auth.signUp(credentials).subscribe( success => {
+                if (success) {
+                    this.router.navigate(['/'])
+                }
+                else {
+                    this.error.set('Could not create account')
+                }
+            })
         }
 
     }
