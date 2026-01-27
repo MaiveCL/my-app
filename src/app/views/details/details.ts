@@ -1,7 +1,7 @@
 import {Component, inject} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
-import {HousingService} from '../housingService';
-import {HousingLocationInfo} from '../housinglocation';
+import {HousingService} from '../../services/housingService';
+import {HousingLocationInfo} from '../../models/housinglocation';
 import {FormControl, FormGroup, ReactiveFormsModule} from '@angular/forms'
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';

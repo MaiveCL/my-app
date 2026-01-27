@@ -5,7 +5,7 @@ import {Component, input, output} from '@angular/core';
 import {MatCardModule} from '@angular/material/card';
 import {MatButtonModule} from '@angular/material/button';
 
-import {HousingLocationInfo} from '../housinglocation';
+import {HousingLocationInfo} from '../../models/housinglocation';
 
 @Component({
   selector: 'app-housing-location',
