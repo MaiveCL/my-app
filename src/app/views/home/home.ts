@@ -19,35 +19,36 @@ import { HousingLocationInfo } from '../../models/housinglocation'; // INTERFACE
 export class Home {
 
   router = inject(Router)
-
-  handleLocationClicked(id: number) {
-    console.log({ id })
-    this.router.navigate(['/details', id])
-  }
+  private route = inject(ActivatedRoute);
+  housingService = inject(HousingService);
 
   currentFilter = '';
-
-  private readonly route = inject(ActivatedRoute);
-
-  private readonly changeDetectorRef = inject(ChangeDetectorRef);
-  
-  housingService: HousingService = inject(HousingService);
-
   filteredLocationList: HousingLocationInfo[] = [];
   housingLocationList: HousingLocationInfo[] = [];
 
-  constructor() {
-    this.housingLocationList = this.housingService.getAllHousingLocations();
-    this.filteredLocationList = this.housingLocationList;
+  private readonly changeDetectorRef = inject(ChangeDetectorRef);
 
-    this.filterResults(this.currentFilter);
+  constructor() {    
+    // Charger les données UNE SEULE FOIS
+    this.housingService.getAllHousingLocations().subscribe(data => {
+      this.housingLocationList = data;
+      this.filteredLocationList = data;
+      this.filterResults(this.currentFilter);
+      // Forcer la détection de changement
+      this.changeDetectorRef.detectChanges();
+    });
 
-    // Lire le query param au chargement
+    // Lire le query param au chargement et aux changements
     this.route.queryParams.subscribe(params => {
       const city = params['city'] || '';
       this.currentFilter = city;
       this.filterResults(city);
     });
+  }
+
+  handleLocationClicked(id: number) {
+    //console.log({ id })
+    this.router.navigate(['/details', id])
   }
 
   filterResults(text: string) {

@@ -8,6 +8,7 @@
         placeholder="Filter by city"
         #filter
         [value]="currentFilter"
+        autofocus
       />
     </mat-form-field>
 
@@ -30,21 +31,6 @@
 <section>
   <p>{{ filteredLocationList.length }} résultat(s)</p>
 </section>
-
-<!-- 
-  <app-housing-location
-    [housingLocation]="housingLocation"
-    (detailsClick)="handleLocationClicked($event)">
-  </app-housing-location> 
--->
-
-<!-- 
-  <HousingLocation 
-    [HousingLocationInfo]="HousingLocationInfo"
-    (detailsClick)="handleLocationClicked($event)">
-  </HousingLocation> 
--->
-
 
 <section class="results">
   @for (housingLocation of filteredLocationList; track $index) {

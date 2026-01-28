@@ -1,4 +1,4 @@
-import {Component, inject} from '@angular/core';
+import {Component, inject, ChangeDetectorRef} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
 import {HousingService} from '../../services/housingService';
 import {HousingLocationInfo} from '../../models/housinglocation';
@@ -19,6 +19,8 @@ export class Details {
   housingService = inject(HousingService);
   housingLocation: HousingLocationInfo | undefined;
 
+  changeDetectorRef = inject(ChangeDetectorRef);
+
   applyForm = new FormGroup({
     firstName: new FormControl(''),
     lastName: new FormControl(''),
@@ -27,7 +29,11 @@ export class Details {
 
   constructor() {
     const housingLocationId = Number(this.route.snapshot.params['id']);
-    this.housingLocation = this.housingService.getHousingLocationById(housingLocationId);
+    this.housingService.getHousingLocationById(housingLocationId).subscribe(data => {
+      this.housingLocation = data ?? undefined;
+      // Forcer la détection de changement
+      this.changeDetectorRef.detectChanges();
+    });
   }
 
   submitApplication() {

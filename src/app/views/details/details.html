@@ -1,17 +1,5 @@
 <article>
 
-    <!-- 
-    <h2 class="mat-headline">Tests angular material typo</h2>
-    <h2 class="mat-headline" style="color: var(--mat-sys-primary)">Titre en primary</h2>
-    <p class="mat-body-medium">Paragraphe normal</p>
-    <h1>Tests angular material typo</h1>
-    <h2>Tests angular material typo</h2>
-    <h3>Tests angular material typo</h3>
-    <h4>Tests angular material typo</h4>
-    <h5>Tests angular material typo</h5>
-    <h6>Tests angular material typo</h6> 
-    -->
-
       <section>
         <mat-card class="listing-card" appearance="outlined">
           <img
@@ -23,7 +11,6 @@
         </mat-card>
       </section>
 
-
     <section>
       <section class="listing-description">
         <h1>{{ housingLocation?.name }}</h1>
@@ -33,7 +20,7 @@
       <section class="listing-features">
         <h2>About this housing location</h2>
         <ul>
-            <li>Units available: {{ housingLocation?.availableUnits }}</li>
+            <li>Units available: {{ housingLocation?.units }}</li>
             <li>Does this location have wifi: {{ housingLocation?.wifi }}</li>
             <li>Does this location have laundry: {{ housingLocation?.laundry }}</li>
         </ul>
