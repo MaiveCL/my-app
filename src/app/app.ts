@@ -22,14 +22,22 @@ import {AuthService} from './services/authService';
             </a>
 
             @if (auth.isLoggedIn) {
+
+              <a matButton routerLink="/my-locations">
+                Mes&nbsp;locations
+              </a>
+
               <button matButton="elevated" class="primary" (click)="handleLogOut()">
                 Se&nbsp;déconnecter
               </button>
+
             }
             @else {
+
               <button matButton="elevated" class="primary" (click)="goToLogin()">
                 Se&nbsp;connecter
               </button>
+
             }
 
         </mat-toolbar>
